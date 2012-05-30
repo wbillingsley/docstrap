@@ -1,0 +1,620 @@
+<!DOCTYPE html5>
+
+<head>
+    <!-- External JS -->
+    <script src="static/jquery/jquery.min.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js" type="text/javascript"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js" type="text/javascript"></script>    
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap-responsive.css" />
+
+    <!-- Our JavaScript, compiled from CoffeeScript -->
+    <script src="js/editor.js"></script>
+    <script src="js/demoPage.js"></script>
+
+    <!-- Our CSS, compiled from less -->
+    <link rel="stylesheet" href="css/docstrap.css" >
+
+</head>
+
+
+<header class="editControls">
+
+<a href="https://github.com/wbillingsley/docstrap"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+
+    <section class="navbar">
+        <div class="navbar-inner">
+            <div class="brand">docstrap 
+                <small>Very simple document editing, with an example using Bootstrap.</small>
+            </div>            
+        </div>
+    </section>
+
+    <section class="" style="margin-right: 70px; margin-left: 20px;">
+        <p>
+            Most rich text editors seem to want to impose their controls on you, and to do all sorts of things that aren't just editing, like automatically search your pages for textareas to replace.  Docstrap just deals with the editing in as small and as transparent a way as possible - so you can get on with the job of building your site the way you want to.  
+        </p>        
+        <p>
+            And that means we can do funky things like the example below: write controls using
+            Twitter Bootsrap, and easily have the page let you insert Twitter Bootstrap and other
+            fancy elements.
+        </p>
+        <div class="alert alert-warning">
+            <strong>Caveat:</strong>
+            It's early days yet; expect bugs. We haven't hammered out the browser quirks, so for the moment
+            we recommend Firefox, Chrome, or Safari.
+        </div>
+    </section>
+
+
+    <section class="sideMarg">
+        <section class="row-fluid">
+
+            <div class="tabbable" >
+                <ul class="nav nav-tabs" id="editTools" style="margin-bottom: 0px;">
+                    <li class="active"><a href="#basicTab" data-toggle="tab">Basic</a></li>
+                    <li class=""><a href="#inlineTab" data-toggle="tab">Inline</a></li>
+                    <li class=""><a href="#blocksTab" data-toggle="tab">Blocks</a></li>
+                    <li class=""><a href="#specialTab" data-toggle="tab">Special</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="basicTab">
+                        <section class="btn-toolbar">
+
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    Paragraph
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.formatBlock('<p>');"><p>Normal</p></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.formatBlock('<h1>');"><h1>Heading 1</h1></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.formatBlock('<h2>');"><h2>Heading 2</h2></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.formatBlock('<h3>');"><h3>Heading 3</h3></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.formatBlock('<h4>');"><h4>Heading 4</h4></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.formatBlock('<h5>');"><h5>Heading 5</h5></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.formatBlock('<pre>');"><pre>Preformatted</pre></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.formatBlock('<div>');"><div>div (not a paragraph)</div></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn" onclick="javascript: theEditor.bold();"><i class="icon-bold"></i></button>
+                                <button class="btn" onclick="javascript: theEditor.italic();"><i class="icon-italic"></i></button>
+                                <button class="btn" onclick="javascript: theEditor.underline();"><u>U</u></button>
+                                <button class="btn" onclick="javascript: theEditor.strikeThrough();"><s>S</s></button>
+                                <button class="btn" onclick="javascript: theEditor.superscript();">a<sup>b</sup></button>
+                                <button class="btn" onclick="javascript: theEditor.subscript();">a<sub>b</sub></button>
+                                <button class="btn" onclick="javascript: theEditor.removeFormat();">A</sub></button>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn" onclick="javascript: theEditor.justifyLeft();">
+                                    <i class="icon-align-left"></i>
+                                </button>
+                                <button class="btn" onclick="javascript: theEditor.justifyCenter();">
+                                    <i class="icon-align-center"></i>
+                                </button>
+                                <button class="btn" onclick="javascript: theEditor.justifyRight();">
+                                    <i class="icon-align-right"></i>
+                                </button>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn" onclick="javascript: theEditor.outdent();">
+                                    <i class="icon-indent-right"></i>
+                                </button>
+                                <button class="btn" onclick="javascript: theEditor.indent();">
+                                    <i class="icon-indent-left"></i>
+                                </button>
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-list"></i>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertUnorderedList();"><ul><li>Bulletted</li></ul></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertOrderedList();"><ol><li>Numbered</li></ol></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <dl><dt>Term</dt><dd>and definition</dd></dl>
+                                            <div class="hidden template">
+                                                <dl><dt>Term</dt><dd>and definition</dd></dl>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <b>&#8734;</b> Link
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="alert alert-danger">
+                                            <strong>WARNING:</strong> ol' lazy bones writing this page hasn't put in a link dialog yet!
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </section>
+
+                    </div>
+                    <div class="tab-pane" id="inlineTab">
+                        <section class="btn-toolbar">
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    Inline elements
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <p><small>Small</small></p>
+                                            <div class="hidden template">
+                                                <small>Something small</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <p><code>Code</code></p>
+                                            <div class="hidden template">
+                                                <code>code</code>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <p><kbd>Keyboard input</kbd></p>
+                                            <div class="hidden template">
+                                                <kbd>Keyboard input</kbd>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <p><samp>Sample output</samp></p>
+                                            <div class="hidden template">
+                                                <samp>Sample output</samp>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <p><address>Address</address></p>
+                                            <div class="hidden template">
+                                                <address>Address</address>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-tag"></i> Labels
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <span class="label">label</span>
+                                            <div class="hidden template">
+                                                <span class="label">label</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <span class="label label-info">info label</span>
+                                            <div class="hidden template">
+                                                <span class="label label-info">info label</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <span class="label label-warning">warning label</span>
+                                            <div class="hidden template">
+                                                <span class="label label-warning">warning label</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: document.execCommand('formatBlock', false, '<p>');">
+                                            <span class="label label-success">success label</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: document.execCommand('formatBlock', false, '<p>');">
+                                            <span class="label label-important">important label</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: document.execCommand('formatBlock', false, '<p>');">
+                                            <span class="label label-inverse">inverse label</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: document.execCommand('formatBlock', false, '<p>');">
+                                            <span class="badge">badge</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: document.execCommand('formatBlock', false, '<p>');">
+                                            <span class="badge badge-success">success badge</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: document.execCommand('formatBlock', false, '<p>');">
+                                            <span class="badge badge-warning">warning badge</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: document.execCommand('formatBlock', false, '<p>');">
+                                            <span class="badge badge-error">error badge</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: document.execCommand('formatBlock', false, '<p>');">
+                                            <span class="badge badge-info">info badge</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: document.execCommand('formatBlock', false, '<p>');">
+                                            <span class="badge badge-inverse">inverse badge</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </section>
+                    </div>
+                    <div class="tab-pane" id="blocksTab">
+                        <section class="btn-toolbar">
+
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-warning-sign"></i> Alerts
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a  href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="alert alert-warning">Alert</div>
+                                            <div class="hidden template">
+                                                <div class="alert alert-warning">Alert</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="alert alert-info">Alert</div>
+                                            <div class="hidden template">
+                                                <div class="alert alert-info">Alert</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="alert alert-success">Alert</div>
+                                            <div class="hidden template">
+                                                <div class="alert alert-success">Alert</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="alert alert-error">Alert</div>
+                                            <div class="hidden template">
+                                                <div class="alert alert-error">Alert</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    Bootstrap blocks
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="well">
+                                                <h3>Hero unit</h3>
+                                                (Much larger than this)
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class="hero-unit">
+                                                    <h1>Hero unit</h1>
+                                                    Crickey, I'm big!
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="well">
+                                                <h3>Well</h3>
+                                                <p>Look I'm in a well.</p>
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class='well'>
+                                                    <h1>Well</h1>
+                                                    <p>Look I'm in a well.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="thumbnail">
+                                                <h3>Thumbnail</h3>
+                                                <p>Useful for putting images in</p>
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class="thumbnail">
+                                                    <h3>Thumbnail</h3>
+                                                    <p>Useful for putting images in</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="page-header">
+                                                <h3>Page header <small>with small</small></h3>
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class="page-header">
+                                                    <h3>Page header <small>with small</small></h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    Themed section
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="theme1">
+                                                <h2>Tribal</h2>
+                                                <p>This is the theme</p>
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class="theme1">
+                                                    <h2>Triabl</h2>
+                                                    <p>This is the theme</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="theme2">
+                                                <h2>Carbon Fibre</h2>
+                                                <p>This is the theme</p>
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class="theme2">
+                                                    <h2>Carbon Fibre</h2>
+                                                    <p>This is the theme</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="theme3">
+                                                <h2>Argyle</h2>
+                                                <p>This is the theme</p>
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class="theme3">
+                                                    <h2>Argyle</h2>
+                                                    <p>This is the theme</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>                                    
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    Layouts
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <h2>Page</h2>
+                                            <p>Resizes to take up the screen-size</p>
+                                            <div class="hidden template">
+                                                <div class="page">
+                                                    <p>content</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="row-fluid">
+                                                <div class="span6"><div class="well"></div></div>
+                                                <div class="span6"><div class="well"></div></div>
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class="row-fluid">
+                                                    <div class="span6"><p>Left content</p></div>
+                                                    <div class="span6"><p>Right content</p></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="row-fluid">
+                                                <div class="span9"><div class="well"></div></div>
+                                                <div class="span3"><div class="well"></div></div>
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class="row-fluid">
+                                                    <div class="span9"><p>Left content</p></div>
+                                                    <div class="span3"><p>Right content</p></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="javascript: theEditor.insertMyTemplate(this);">
+                                            <div class="row-fluid">
+                                                <div class="span3"><div class="well"></div></div>
+                                                <div class="span9"><div class="well"></div></div>
+                                            </div>
+                                            <div class="hidden template">
+                                                <div class="row-fluid">
+                                                    <div class="span3"><p>Left content</p></div>
+                                                    <div class="span9"><p>Right content</p></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </section>
+                    </div>
+                    <div class="tab-pane" id="specialTab">
+                        <section class="btn-toolbar">
+                            <div class="btn-group">
+                                <button class="btn" onclick="javascript: theEditor.toggleMarkup();">
+                                    &para;
+                                </button>
+                                <button class="btn" onclick="javascript: theEditor.showSource();">
+                                    &lt;HTML&gt;
+                                </button>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </section>
+</header>
+
+<section class=" page">
+    <section id="editor" contenteditable="true">
+        <div class="theme3">
+            <div class="hero-unit">
+                <h1>Most editors have less style than Grandad's cardigan...</h1>
+                <p>...and they expect your content to be as drab</p>                
+            </div>
+            <div class="row-fluid">
+                <div class="span9">
+                    <div class="page-header">
+                        <h3>
+                            Why are rich editors <small>so poor?&nbsp;</small>
+                        </h3>
+                    </div>
+                    <p>
+                        Editors seem to have been written exclusively around the idea that you have lots of pages you want to drop the same boring little editor on, usually just to edit a comment or two. &nbsp;So they all seem geared around making it easy to replace a textarea. &nbsp;But there's nothing technically stopping us from letting people edit more interesting content. &nbsp;Here we have some layout, all done within the editor. &nbsp;It's just that with most content editors, that means writing a "plugin" even just to get your button into the GUI, and that means learning their plugin architecture (learning that is completely wasted when you later switch to a different editor). &nbsp;Time for something simpler.
+                    </p>
+                </div>
+                <div class="span3">
+                    <p><div class="thumbnail">
+                        <h3>I'll give you one-o</h3>
+                        <p>Green grow the rushes, o</p>
+                    </div></p>                    
+                    <p><div class="thumbnail">
+                        <h3>What is your one-o</h3>
+                        <p>Green grow the rushes, o</p>
+                    </div></p>
+                    <p>
+                        One is one and all alone, and ever more shall be so.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="theme2">
+            <div class="hero-unit">
+                <h1>
+                    Don't wear a Hawaiian shirt with that tuxedo
+                </h1>
+                <p>Not even if your rich content editor tells you to </p>
+            </div>
+            <div class="row-fluid">
+                <div class="span3">
+                    <p>
+                        <div class="thumbnail">
+                            <h3>I'll give you two-o</h3>
+                            <p>Green grow the rushes-o</p>
+                        </div>
+                    </p>
+                    <p>
+                        <div class="thumbnail">
+                            <h3>What is your two-o</h3>
+                            <p>Green grow the rushes-o</p>
+                        </div>
+                    </p>
+                    <p>
+                        Two two the lily-white boys, swaddled all in green-o
+                    </p>
+                </div>
+                <div class="span9">
+                    <p><div class="page-header">
+                        <h3>One size&nbsp;<small>does not fit all</small></h3>
+                    </div></p>
+                    <p>
+                        Regardless of how much effort you put into your site design (and let's face it, Bootstrap lets us get away with very little effort), it's a bit irritating when the rich editor forces on you a set of controls that just plain ol' don't go with your site design. Like putting a Hawaiian shirt on with a tuxedo. &nbsp;(Or if you're lucky, the editor might give you a choice of which Hawaiian shirt you should wear!). &nbsp;Let's let content editors get back to editing the content and put you back in control of your site design.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    </section>
+</section>

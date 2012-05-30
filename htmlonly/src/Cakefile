@@ -1,0 +1,26 @@
+{exec} = require 'child_process'
+
+
+task 'js', 'Compiles coffee in coffee/ to js in js/', ->
+    exec 'coffee -o js/ -c coffee/', (err, stdout, stderr) =>
+        console.log stdout + stderr
+
+
+LESS_SRC = "less"
+CSS_DEST = "css"
+
+compileToCss = (filename) ->
+	srcname = filename
+	destname = srcname.replace('.less', '.css')
+	console.log("static/node_modules/less/bin/lessc #{LESS_SRC}/#{srcname} #{CSS_DEST}/#{destname}")
+	exec "static/node_modules/less/bin/lessc #{LESS_SRC}/#{srcname} #{CSS_DEST}/#{destname}", (err, stdout, stderr) =>
+		console.log stdout + stderr
+
+task 'css', 'Compiles less in less/ to css in css/', ->
+	fs = require('fs')
+	fs.readdir LESS_SRC, (err, files) ->
+		for file in files
+	      	file = "#{file}"
+	      	compileToCss(file)
+
+    
